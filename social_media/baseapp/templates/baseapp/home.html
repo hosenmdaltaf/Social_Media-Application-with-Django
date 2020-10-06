@@ -1,0 +1,29 @@
+{%extends 'baseapp/main.html'%}
+{% load static %}
+{% block content %}
+
+
+
+<h1>Wellcome,In altaf.com</h1>
+
+{% for post in obj  %}
+<div class="col-sm-6" >
+ <div class="card text-center" >
+    <div class="card-header">
+        Wellcome,In altaf.com
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ post.writer}}</h5>
+      <p class="card-text">{{post.content}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-muted">
+        {{post.post_date}}
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock content %}

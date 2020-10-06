@@ -1,0 +1,14 @@
+{% extends 'baseapp/main.html' %}
+
+{% block content %}
+
+    <h1>Login</h1>
+    <form class="site-form" action="{% url 'users:login'  %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Login">
+    </form>
+    <h2>Don't have account!<a href="{% url 'users:register' %}">Signup</a></h2> 
+
+
+{% endblock%}
