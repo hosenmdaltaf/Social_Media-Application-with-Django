@@ -6,22 +6,27 @@
 
 <h1>Wellcome,In altaf.com</h1>
 
-{% for post in obj  %}
-<div class="col-sm-6" >
- <div class="card text-center" >
-    <div class="card-header">
-        Wellcome,In altaf.com
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{ post.writer}}</h5>
-      <p class="card-text">{{post.content}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-muted">
-        {{post.post_date}}
-    </div>
+<form class="was-validated">
+  <div class="mb-3">
+    <label for="validationTextarea">New Post</label>
+    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+    <button><a href="#">Post</a></button>
   </div>
-</div>
+</form>
+
+{% for post in obj  %}
+
+
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ post.writer }}</a>
+      <small class="text-muted">{{post.post_date}}</small>
+    </div>
+    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+    <p class="article-content">{{ post.content }}</p>
+  </div>
+</article>
 
 {% endfor %}
 
