@@ -1,0 +1,23 @@
+{%extends 'baseapp/main.html' %}
+{% load static %}
+{% block content %}
+
+
+        <h1 style="align-items: center; background-color: rgb(233, 236, 239);"> Post A New Blog</h1>
+        <ul>
+            <li><a href="{% url 'account:profile-page' %}">Back To Home</a></li>
+            
+          </ul>
+    {% if user.is_authenticated %}
+    
+            <form   method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+            
+                <button type="submit">Post</button>
+            </form>
+    
+    {% endif %}
+
+ 
+{% endblock%}

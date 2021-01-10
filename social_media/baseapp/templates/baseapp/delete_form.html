@@ -1,0 +1,22 @@
+{%extends 'baseapp/main.html' %}
+{% load static %}
+{% block content %}
+
+
+    <h1> Delete Blog Post</h1>
+{% if user.is_authenticated %}
+    {% if user.id == post.writer.id %}
+        <form   method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+        
+            <button type="submit">Delete</button>
+        </form>
+    {% else %}
+      <h3 style="color: red;">You're trying to delete someone else post!!You don't have permission to do so</h3>
+    {% endif %}
+{% endif %}
+
+ 
+
+{% endblock%}

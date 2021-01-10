@@ -1,0 +1,133 @@
+{% extends 'baseapp/main.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+	.image-container{
+		max-width: 250px;
+		height: auto;
+	}
+	.field-heading{
+		color: var(--secondary-text-color);
+	}
+	.icon-container:hover {
+		opacity: 0.3;
+		cursor: pointer;
+	}
+	.friends-icon{
+		color: #4287f5;
+		font-size: 40px;
+	}
+	.person-add-icon{
+		color: #4287f5;
+		font-size: 40px;
+	}
+	.friend-text{
+		font-weight: 500;
+		color: black;
+	}
+	.friends-btn{
+		background-color: #cccccc;
+		border-color: #cccccc;
+		color: #000;
+		font-weight: 500;
+	}
+	.friends-btn:hover {
+		background-color: #bfbfbf;
+		border-color: #bfbfbf;
+	}
+	.dropdown-toggle::after { 
+		content: none; 
+	}
+	.card{
+		border-radius: 12px;
+	}
+	.material-icons{
+		font-size: 30px;
+	}
+	.material-icons:hover{
+		cursor: pointer;
+	}
+	.confirm-friend-request{
+		color: green;
+	}
+	.confirm-friend-request:hover {
+		opacity: 0.3;
+	}
+	.decline-friend-request:hover {
+		opacity: 0.3;
+	}
+	.decline-friend-request{
+		color: red;
+	}
+	.message-btn-text{
+		font-weight: 500;
+	}
+</style>
+        
+        
+        
+{% if request.user.is_authenticated %}
+
+<div class="flex-page">
+
+  <div class="profile-post-seaction">
+  
+    <div class="container-fluid">
+        <div class="d-flex flex-row justify-content-center flex-wrap align-items-start">
+    
+            <div class="card profile-card m-2">
+              <div class="card-body">
+                  <div class="d-flex flex-column justify-content-center p-4">
+                      <div class="image-container mx-auto mb-4">
+                          <img class="d-block border border-dark rounded-circle img-fluid mx-auto profile-image" alt="altaf.com " id="id_profile_image" src="{{ request.user.profile_image.url }}" width="80px" height="80px">
+                      </div>
+                      <p class="mt-4 mb-1 field-heading">Email</p>
+                      
+                          {% if hide_email %}
+                              <h5>**********</h5>
+                          {% else %}
+                              <h5>{{request.user.email}}</h5>
+                          {% endif %}
+                      
+                      <p class="mt-4 mb-1 field-heading">Username</p>
+                      <h5>{{request.user.username}}</h5>
+
+                      <p class="mt-4 mb-1 field-heading">Bio</p>
+                      <h5>{{request.user.bio}}</h5>
+					  <button><a href="{% url 'account:edit'  user.id %}">Edit</a></button>
+                      <!-- If Auth user is viewing their own profile -->
+                     
+                  </div>
+              </div>
+            </div>
+        </div>
+	</div>
+
+
+    <!--gellery-part-->
+    <form class="was-validated">
+      <div class="mb-3">
+        <label for="validationTextarea">New Post</label>
+        <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+        <button><a href="{% url 'account:post-create' %}">Post</a></button>
+      </div>
+	</form>
+	
+	<p >Copyright@ 2020 Hosen MD Altaf</p>
+ </div>
+  
+   {% include 'users/profile.html' %}
+
+
+
+{% else %}
+
+  <h1>You don't have account yet .Create one-<a class="dropdown-item" href="{% url 'account:register' %}">Register</a></h1>
+
+
+{% endif %}
+
+
+
+{% endblock content %}
