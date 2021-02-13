@@ -20,37 +20,49 @@ from django.views.generic import (
 '''
 def profiles(request):
 	data =Post.objects.all()
-	paginate_by = 2  
+	paginate_by = 2
 	ordering = ['post_date']
-	return render(request,'account/account.html',{'data':data}) 
+	return render(request,'account/account.html',{'data':data})
 	'''
 
 
 class ProfileView(ListView):
-		model = Post 
-		#paginate_by = 2  
-		ordering = ['-post_date']
-		
-		context_object_name = 'posts'
-		template_name = 'users/profile.html'
+	model = Post
+	#paginate_by = 2
+	ordering = ['-post_date']
+
+	context_object_name = 'posts'
+	template_name = 'users/profile.html'
+
+	def get_context_data(self,*args,**kwargs):
+            context = super().get_context_data(*args,**kwargs)
+            context['latest']= Post.objects.order_by('-post_date')[:3]
+
+            return context
 
 class PostdetailView(DetailView):
     model=Post
-    template_name='users/detail.html'	
-   
+    template_name='users/detail.html'
+
+    def get_context_data(self,*args,**kwargs):
+            context = super().get_context_data(*args,**kwargs)
+            context['latest']= Post.objects.order_by('-post_date')[:3]
+
+            return context
+
 class PostCreateView(CreateView):
     model=Post
     fields= ['title','image','content']
     template_name='users/post_form.html'
     success_url = reverse_lazy("account:profile-page")
-    
+
 
     def form_valid(self,form):
         form.instance.writer = self.request.user
-        return super().form_valid(form) 
-    
+        return super().form_valid(form)
 
-	
+
+
 class PostUpdateView(UpdateView):
     model=Post
     fields= ['title','image','content']
@@ -84,7 +96,7 @@ def edit_account_view(request, *args, **kwargs):
 				form = AccountUpdateForm(request.POST, instance=request.user,
 					initial={
 						"id": account.pk,
-						"email": account.email, 
+						"email": account.email,
 						"username": account.username,
 						"profile_image": account.profile_image,
 						"hide_email": account.hide_email,
@@ -97,7 +109,7 @@ def edit_account_view(request, *args, **kwargs):
 		form = AccountUpdateForm(
 			initial={
 					"id": account.pk,
-					"email": account.email, 
+					"email": account.email,
 					"username": account.username,
 					"profile_image": account.profile_image,
 					"bio": account.bio,
@@ -155,12 +167,5 @@ def login_view(request, *args, **kwargs):
 
 def logout_view(request, *args, **kwargs):
     logout(request)
-   
+
     return render(request,'account/logout.html')
-
-
-
-
-
-
-

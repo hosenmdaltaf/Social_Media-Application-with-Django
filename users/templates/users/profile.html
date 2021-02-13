@@ -350,68 +350,35 @@
                         <h3>Latest Post</h3>
                     </div>
                     <div class="widget-body">
+                        {% for post in latest %}
                         <div class="latest-post-aside media">
                             <div class="lpa-left media-body">
                                 <div class="lpa-title">
-                                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+                                    <h5><a href="#">{{post.title}}</a></h5>
                                 </div>
                                 <div class="lpa-meta">
-                                    <a class="name" href="#">
-                                        Rachel Roth
+                                    <a class="name" href="{{ post.get_absolute_url }}">
+                                        {{ post.author }}
                                     </a>
                                     <a class="date" href="#">
-                                        26 FEB 2020
+                                        {{ post.date }}
                                     </a>
                                 </div>
                             </div>
                             <div class="lpa-right">
                                 <a href="#">
-                                    <img src="{% static 'images/aa.jpg' %}" title="" alt="">
+                                    <img src="{{post.image.url }}" title="" alt="">
                                 </a>
-                            </div>
+                            </div> 
                         </div>
-                        <div class="latest-post-aside media">
-                            <div class="lpa-left media-body">
-                                <div class="lpa-title">
-                                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                </div>
-                                <div class="lpa-meta">
-                                    <a class="name" href="#">
-                                        Rachel Roth
-                                    </a>
-                                    <a class="date" href="#">
-                                        26 FEB 2020
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="lpa-right">
-                                <a href="#">
-                                    <img src="{% static 'images/cover3.jpg' %}" title="" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="latest-post-aside media">
-                            <div class="lpa-left media-body">
-                                <div class="lpa-title">
-                                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                </div>
-                                <div class="lpa-meta">
-                                    <a class="name" href="#">
-                                        Rachel Roth
-                                    </a>
-                                    <a class="date" href="#">
-                                        26 FEB 2020
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="lpa-right">
-                                <a href="#">
-                                    <img src="{% static 'images/a2.jpg' %}" title="" alt="">
-                                </a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                </div>
+
+                       
+                    </div>
+
+
+               
                 <!-- End Latest Post -->
                 <!-- widget Tags -->
                 <div class="widget widget-tags">
@@ -562,72 +529,36 @@
 
                <!-- Latest Post -->
                <div class="widget widget-latest-post">
-                   <div class="widget-title">
-                       <h3>Latest Post</h3>
-                   </div>
-                   <div class="widget-body">
-                       <div class="latest-post-aside media">
-                           <div class="lpa-left media-body">
-                               <div class="lpa-title">
-                                   <h5><a href="#">Prevent 95% of visitors from google analytics</a></h5>
-                               </div>
-                               <div class="lpa-meta">
-                                   <a class="name" href="#">
-                                       Rachel Roth
-                                   </a>
-                                   <a class="date" href="#">
-                                       26 FEB 2020
-                                   </a>
-                               </div>
-                           </div>
-                           <div class="lpa-right">
-                               <a href="#">
-                                   <img src="{% static 'images/aa.jpg' %}" title="" alt="">
-                               </a>
-                           </div>
-                       </div>
-                       <div class="latest-post-aside media">
-                           <div class="lpa-left media-body">
-                               <div class="lpa-title">
-                                   <h5><a href="#">Prevent 85% of visitors from google analytics</a></h5>
-                               </div>
-                               <div class="lpa-meta">
-                                   <a class="name" href="#">
-                                       Rachel Roth
-                                   </a>
-                                   <a class="date" href="#">
-                                       26 FEB 2020
-                                   </a>
-                               </div>
-                           </div>
-                           <div class="lpa-right">
-                               <a href="#">
-                                   <img src="{% static 'images/cover3.jpg' %}" title="" alt="">
-                               </a>
-                           </div>
-                       </div>
-                       <div class="latest-post-aside media">
-                           <div class="lpa-left media-body">
-                               <div class="lpa-title">
-                                   <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                               </div>
-                               <div class="lpa-meta">
-                                   <a class="name" href="#">
-                                       Rachel Roth
-                                   </a>
-                                   <a class="date" href="#">
-                                       26 FEB 2020
-                                   </a>
-                               </div>
-                           </div>
-                           <div class="lpa-right">
-                               <a href="#">
-                                   <img src="{% static 'images/cover3.jpg' %}" title="" alt="">
-                               </a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
+                <div class="widget-title">
+                    <h3>Latest Post</h3>
+                </div>
+                <div class="widget-body">
+                    {% for post in latest %}
+                    <div class="latest-post-aside media">
+                        <div class="lpa-left media-body">
+                            <div class="lpa-title">
+                                <h5><a href="#">{{post.title}}</a></h5>
+                            </div>
+                            <div class="lpa-meta">
+                                <a class="name" href="{{ post.get_absolute_url }}">
+                                    {{ post.author }}
+                                </a>
+                                <a class="date" href="#">
+                                    {{ post.date }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lpa-right">
+                            <a href="#">
+                                <img src="{{post.image.url }}" title="" alt="">
+                            </a>
+                        </div> 
+                    </div>
+                    {% endfor %}
+                </div>
+
+                   
+                </div>
                <!-- End Latest Post -->
                <!-- widget Tags -->
                <div class="widget widget-tags">
