@@ -33,16 +33,19 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
 
     'baseapp',
-    'users',
     'account',
-
+   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'crispy_forms',
     ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
    
 
 AUTH_USER_MODEL = 'account.Account'
@@ -130,11 +133,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# STATIC_URL = '/static/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# MEDIA_URL = '/media/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static')
+# ]
+
+
 STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/media/'
-
+    
+if not DEBUG:
+        STATIC_ROOT = ''
+    
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+        os.path.join(BASE_DIR, 'static/'),
+    ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')

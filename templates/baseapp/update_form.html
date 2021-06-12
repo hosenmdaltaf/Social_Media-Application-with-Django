@@ -1,0 +1,32 @@
+{%extends 'baseapp/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1  style="text-align: center; background-color: rgb(233, 236, 239);">Update  Blog Post</h1>
+<ul>
+    <li><a href="{% url 'account:profile-page' %}">Back To Home</a></li>
+    
+  </ul>
+{% load crispy_forms_tags %}
+{% if user.is_authenticated %}
+    {% if user.id == post.writer.id %}
+       <form method="post">{% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                {{ form|crispy }}
+                </div>
+                
+            </div>
+            <input class="btn btn-success col-md-6 offset-md-3" type="submit" value="Update">
+        </form>
+    {% else %}
+      <h3 style="color: red;">You're trying to update someone else post!!You don't have permission to do so</h3>
+    {% endif %}
+{% endif %}
+
+ 
+
+
+
+{% endblock%}

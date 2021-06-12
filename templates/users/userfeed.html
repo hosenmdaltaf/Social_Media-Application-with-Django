@@ -1,0 +1,178 @@
+
+{%extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div class="container">
+        <div class="page-inner no-page-title">
+            <!-- start page main wrapper -->
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-lg-5 col-xl-3">
+                        <div class="card card-white grid-margin">
+                            <div class="card-heading clearfix">
+                                <h4 class="card-title">User Profile</h4>
+                            </div>
+                            <div class="card-body user-profile-card mb-3">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle" alt="" />
+                                <h4 class="text-center h6 mt-2">Lois Anderson</h4>
+                                <p class="text-center small">UI/UX Designer</p>
+                                <button class="btn btn-theme btn-sm">Follow</button>
+                                <button class="btn btn-theme btn-sm">Message</button>
+                            </div>
+                            <hr />
+                            <div class="card-heading clearfix mt-3">
+                                <h4 class="card-title">User Profile</h4>
+                            </div>
+                            <div class="card-body mb-3">
+                                <a href="#" class="label label-success mb-2">HTML</a>
+                                <a href="#" class="label label-success mb-2">CSS</a>
+                                <a href="#" class="label label-success mb-2">Sass</a>
+                                <a href="#" class="label label-success mb-2">Bootstrap</a>
+                                <a href="#" class="label label-success mb-2">Javascript</a>
+                                <a href="#" class="label label-success mb-2">Photoshop</a>
+                                <a href="#" class="label label-success">UI</a>
+                                <a href="#" class="label label-success">UX</a>
+                            </div>
+                            <hr />
+                            <!-- <div class="card-heading clearfix mt-3">
+                                <h4 class="card-title">About</h4>
+                            </div>
+                            <div class="card-body mb-3">
+                                <p class="mb-0">Lorem ipsum dolor sitelt amet, consectetur adipis icing elit, sed do eiusmod tempor incididunt utitily labore et dolore magna aliqua metavta.</p>
+                            </div>
+                            <hr />
+                            <div class="card-heading clearfix mt-3">
+                                <h4 class="card-title">Contact Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless mb-0 text-muted">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Email:</th>
+                                                <td>addyour@emailhere</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Phone:</th>
+                                                <td>(+44) 123 456 789</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Address:</th>
+                                                <td>74 Guild Street 542B, Great North Town MT.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="card card-white grid-margin">
+                            <div class="card-body">
+                                <div class="post">
+                                    <textarea class="form-control" placeholder="Post" rows="4"></textarea>
+                                    <div class="post-options">
+                                        <a href="#"><i class="fa fa-camera"></i></a>
+                                        <a href="#"><i class="fas fa-video"></i></a>
+                                        <a href="#"><i class="fa fa-music"></i></a>
+                                        <button class="btn btn-outline-primary float-right">Post</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-timeline">
+                            <ul class="list-unstyled">
+
+                                {% for post in allposts %}
+                                  <!---start user post seaction-->
+                                <li class="timeline-item">
+                                    <div class="card card-white grid-margin">
+                                        <div class="card-body">
+                                            <div class="timeline-item-header">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                                <p>{{ post.writer }} <span>posted a status</span></p>
+                                                <small>{{post.post_date|timesince}}</small>
+                                            </div>
+                                            <div class="timeline-item-post">
+                                                <p>{{ post.content|truncatechars:100 }}</p>
+                                                {% if post.image %} 
+                                                <img class="img-fluid w-100" src="{{ post.image.url }}" alt=""/></a>
+                                                {% endif %}
+                                                <div class="timeline-options">
+                                                    <a href="#"><i class="fa fa-thumbs-up"></i> Like (15)</a>
+                                                    <a href="#"><i class="fa fa-comment"></i> Comment (4)</a>
+                                                    <a href="#"><i class="fa fa-share"></i> Share (6)</a>
+                                                </div>
+                                                <div class="timeline-comment">
+                                                    <div class="timeline-comment-header">
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                                        <p>Jamara Karle <small>1 hour ago</small></p>
+                                                    </div>
+                                                    <p class="timeline-comment-text">Xullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                </div>
+                                                <div class="timeline-comment">
+                                                    <div class="timeline-comment-header">
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                                        <p>Lois Anderson <small>3 hours ago</small></p>
+                                                    </div>
+                                                    <p class="timeline-comment-text">Coluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                                                </div>
+                                                <textarea class="form-control" placeholder="Replay"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---finish user post-->
+                                </li>
+                                {% endfor %}
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-xl-3">
+                        <div class="card card-white grid-margin">
+                            <div class="card-heading clearfix">
+                                <h4 class="card-title">Suggestions</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="team">
+                                    <div class="team-member">
+                                        <div class="online on"></div>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                    </div>
+                                    <div class="team-member">
+                                        <div class="online on"></div>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                    </div>
+                                    <div class="team-member">
+                                        <div class="online off"></div>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-white grid-margin">
+                            <div class="card-heading clearfix">
+                                <h4 class="card-title">Some Info</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis architecto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+            </div>
+            <!-- end page main wrapper -->
+           
+        </div>
+        </div>
+
+
+        <div class="page-footer">
+            <p>Copyright © 2020 Evince All rights reserved.</p>
+        </div>
+
+    {% endblock %}

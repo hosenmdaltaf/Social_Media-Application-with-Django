@@ -8,13 +8,9 @@ from django.conf import settings
 
 from account.models import Account
 from baseapp.models import Post
-from django.urls import reverse_lazy
+
 from django.views.generic import (
-    ListView,
-     DetailView,
-     CreateView,
-	 UpdateView,
-	 DeleteView
+    ListView
 )
 
 '''
@@ -23,59 +19,22 @@ def profiles(request):
 	paginate_by = 2
 	ordering = ['post_date']
 	return render(request,'account/account.html',{'data':data})
+
 	'''
 
 
 class ProfileView(ListView):
 	model = Post
-	#paginate_by = 2
+	# paginate_by = 5
 	ordering = ['-post_date']
-
-	context_object_name = 'posts'
-	template_name = 'users/profile.html'
-
+	context_object_name = 'allposts'
+	# template_name = 'users/profile.html'
+	template_name = 'users/userfeed.html'
+	
 	def get_context_data(self,*args,**kwargs):
             context = super().get_context_data(*args,**kwargs)
             context['latest']= Post.objects.order_by('-post_date')[:3]
-
             return context
-
-class PostdetailView(DetailView):
-    model=Post
-    template_name='users/detail.html'
-
-    def get_context_data(self,*args,**kwargs):
-            context = super().get_context_data(*args,**kwargs)
-            context['latest']= Post.objects.order_by('-post_date')[:3]
-
-            return context
-
-class PostCreateView(CreateView):
-    model=Post
-    fields= ['title','image','content']
-    template_name='users/post_form.html'
-    success_url = reverse_lazy("account:profile-page")
-
-
-    def form_valid(self,form):
-        form.instance.writer = self.request.user
-        return super().form_valid(form)
-
-
-
-class PostUpdateView(UpdateView):
-    model=Post
-    fields= ['title','image','content']
-    template_name='baseapp/update_form.html'
-    success_url = reverse_lazy("account:profile-page")
-
-
-
-class PostDeleteView(DeleteView):
-    model=Post
-    template_name='baseapp/delete_form.html'
-    success_url = reverse_lazy("account:profile-page")
-
 
 
 def edit_account_view(request, *args, **kwargs):

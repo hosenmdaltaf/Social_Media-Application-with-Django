@@ -10,8 +10,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('baseapp.urls')),
-    path('users/',include('users.urls')),
-   # path('account/',include('account.urls')),
     path('account/', include('account.urls', namespace='account')),
 ]
 

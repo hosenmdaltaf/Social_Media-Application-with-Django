@@ -43,10 +43,11 @@ class Account(AbstractBaseUser):
 		is_staff				= models.BooleanField(default=False)
 		is_superuser			= models.BooleanField(default=False)
 		#extend the Account model with extra feild
-		profile_image                 =  models.ImageField(default='images/man.png',upload_to='profile_pics')
+		profile_image                 =  models.ImageField(default='man.png',upload_to='profile_pics')
 		bio                     =  models.CharField(max_length=100,null=True,blank=True)
 		hide_email              = models.BooleanField(default=True)
 		full_name               = models.CharField(max_length=30,null=True,blank=True)
+	
 		
 
 
@@ -66,3 +67,4 @@ class Account(AbstractBaseUser):
 		# Does this user have permission to view this app? (ALWAYS YES FOR SIMPLICITY)
 		def has_module_perms(self, app_label):
 			return True
+
