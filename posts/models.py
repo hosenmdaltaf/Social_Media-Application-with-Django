@@ -14,20 +14,14 @@ from django.urls import reverse
 # from account.models import Account
 
 
-
-
 class Post(models.Model):
-    title = models.CharField(max_length=200,null=True,blank=True)
+
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField( blank=True, null=True)
     post_date = models.DateTimeField(auto_now_add=True)
-    # post_date = models.DateField(auto_now_add=True)
     post_updated = models.DateField(auto_now=True)
     image=models.ImageField(upload_to='post_images', blank=True, null=True)
-    category = models.ForeignKey('Category',on_delete=models.CASCADE, null=True, blank=True)
-
-#     rating = models.IntegerField()
-#     security=
+  
 #    comment
 #    share
     view_count=models.IntegerField(default=0)
@@ -35,27 +29,18 @@ class Post(models.Model):
 
     def __str__(self):
         #return self.writer
-        return str(self.writer) + '---' + str(self.title)
+        return str(self.writer)
+    class Meta:
+        ordering = ['-post_date'] 
 
     def get_absolute_url(self,id):
-        return reverse('baseapp:articale-detail',kwargs={'id':self.id})
+        return reverse('posts:articale-detail',kwargs={'id':self.id})
 
-      
-  
 
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField()
-   
-
-    def __str__(self):
-        return self.name
-
-    
 
 
 class Comment(models.Model):
-    post = models.ForeignKey('baseapp.Post', on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey('posts.Post', on_delete=models.CASCADE, related_name='comments')
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.TextField(blank=True, null=True )
     created_date = models.DateTimeField(auto_now_add=True)
@@ -78,6 +63,7 @@ class Comment(models.Model):
         return self.comment_set.all().count()
 
         
+
 
 
 

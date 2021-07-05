@@ -80,21 +80,21 @@
               <div class="card-body">
                   <div class="d-flex flex-column justify-content-center p-4">
                       <div class="image-container mx-auto mb-4">
-                          <img class="d-block border border-dark rounded-circle img-fluid mx-auto profile-image" alt="altaf.com " id="id_profile_image" src="{{ request.user.profile_image.url }}" width="80px" height="80px">
+                          <img class="d-block border border-dark rounded-circle img-fluid mx-auto profile-image" alt="altaf.com " id="id_profile_image" src="{{ my_profile.profile_image.url }}" width="80px" height="80px">
                       </div>
                       <p class="mt-4 mb-1 field-heading">Email</p>
                       
                           {% if hide_email %}
                               <h5>**********</h5>
                           {% else %}
-                              <h5>{{request.user.email}}</h5>
+                              <h5>{{my_profile.email}}</h5>
                           {% endif %}
                       
                       <p class="mt-4 mb-1 field-heading">Username</p>
-                      <h5>{{request.user.username}}</h5>
+                      <h5>{{ my_profile.username}}</h5>
 
                       <p class="mt-4 mb-1 field-heading">Bio</p>
-                      <h5>{{request.user.bio}}</h5>
+                      <h5>{{ my_profile.bio}}</h5>
 					  <button><a href="{% url 'account:edit'  user.id %}">Edit</a></button>
                       <!-- If Auth user is viewing their own profile -->
                      
@@ -106,18 +106,11 @@
 
 
     <!--gellery-part-->
-    <form class="was-validated">
-      <div class="mb-3">
-        <label for="validationTextarea">New Post</label>
-        <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
-        <button><a href="{% url 'account:post-create' %}">Post</a></button>
-      </div>
-	</form>
+  
 	
 	<p >Copyright@ 2020 Hosen MD Altaf</p>
  </div>
   
-   {% include 'users/profile.html' %}
 
 
 

@@ -1,8 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from baseapp.models import Post,Comment
+from posts.models import Post,Comment
 from .forms import PostModelForm,CommentModelForm
-
-from baseapp.models import Post
 from django.urls import reverse_lazy
 
 
@@ -17,8 +15,8 @@ from django.views.generic import (
 
 # Create your views here.
 def home(request):
-   
-    
+
+
     return render(request,'baseapp/homepage.html',)
 
 
@@ -49,7 +47,7 @@ def postdetail(request,id):
 
 class PostCreateView(CreateView):
     model=Post
-    fields= ['title','image','content','category']
+    fields= ['image','content']
     template_name='users/post_create_form.html'
     success_url = reverse_lazy("account:profile-page")
 
@@ -92,6 +90,7 @@ class PostDeleteView(DeleteView):
 #       'comment_form':cf, 
 #       } 
 #     return render(request, 'users/add_comment_to_post.html', context)
+
 
 
 

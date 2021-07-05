@@ -15,9 +15,9 @@
                                 <h4 class="card-title">User Profile</h4>
                             </div>
                             <div class="card-body user-profile-card mb-3">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle" alt="" />
-                                <h4 class="text-center h6 mt-2">Lois Anderson</h4>
-                                <p class="text-center small">UI/UX Designer</p>
+                                <img src="{{ request.user.profile_image.url }}" class="user-profile-image rounded-circle" alt="" />
+                                <h4 class="text-center h6 mt-2">{{request.user.username}}</h4>
+                                <p class="text-center small">{{request.user.bio}}</p>
                                 <button class="btn btn-theme btn-sm">Follow</button>
                                 <button class="btn btn-theme btn-sm">Message</button>
                             </div>
@@ -71,14 +71,21 @@
                     <div class="col-lg-7 col-xl-6">
                         <div class="card card-white grid-margin">
                             <div class="card-body">
-                                <div class="post">
-                                    <textarea class="form-control" placeholder="Post" rows="4"></textarea>
+                                <div class="post"  >
+                                    <form action="" method="POST" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                    <!-- <textarea class="form-control" placeholder="Post" rows="4" >
+                                       
+                                        {{p_form}}
+                                    </textarea> -->
+                                    {{p_form}}
                                     <div class="post-options">
-                                        <a href="#"><i class="fa fa-camera"></i></a>
+                                        <!-- <a href="#"><i class="fa fa-camera"></i></a>
                                         <a href="#"><i class="fas fa-video"></i></a>
-                                        <a href="#"><i class="fa fa-music"></i></a>
-                                        <button class="btn btn-outline-primary float-right">Post</button>
+                                        <a href="#"><i class="fa fa-music"></i></a> -->
+                                         <button class="btn btn-outline-primary float-right" name="submit_p_form">Post</button>
                                     </div>
+                                 </form>
                                 </div>
                             </div>
                         </div>
@@ -105,6 +112,8 @@
                                                     <a href="#"><i class="fa fa-comment"></i> Comment (4)</a>
                                                     <a href="#"><i class="fa fa-share"></i> Share (6)</a>
                                                 </div>
+
+
                                                 <div class="timeline-comment">
                                                     <div class="timeline-comment-header">
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
@@ -119,7 +128,15 @@
                                                     </div>
                                                     <p class="timeline-comment-text">Coluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
                                                 </div>
-                                                <textarea class="form-control" placeholder="Replay"></textarea>
+
+
+                                                <form action="" method="POST" class="form-control">
+                                                  
+                                                    <textarea class="form-control" placeholder="Replay"></textarea>
+                                             
+                                                    <button type="submit" name="submit_c_form" class="btn btn-outline-primary float-right">Replay</button>
+                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -136,20 +153,18 @@
                             <div class="card-heading clearfix">
                                 <h4 class="card-title">Suggestions</h4>
                             </div>
+                            
                             <div class="card-body">
                                 <div class="team">
+                                    {% for profile in profiles %}
                                     <div class="team-member">
                                         <div class="online on"></div>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                     <a href="{% url 'account:my_profile' profile.pk  %}">
+                                        <img src="{{ profile.profile_image.url }}" alt="" />
+                                    </a>
                                     </div>
-                                    <div class="team-member">
-                                        <div class="online on"></div>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                    </div>
-                                    <div class="team-member">
-                                        <div class="online off"></div>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                    </div>
+                                    {% endfor %} 
+                                   
                                 </div>
                             </div>
                         </div>

@@ -2,7 +2,7 @@ from django.urls import path
 
 from .import views
 
-from baseapp.views import (
+from posts.views import (
 
 #    PostdetailView,
    PostCreateView,
@@ -10,7 +10,7 @@ from baseapp.views import (
    PostDeleteView,	
 )
 
-app_name='baseapp'
+app_name='posts'
 
 urlpatterns=[
     path('',views.home,name='home-page'),

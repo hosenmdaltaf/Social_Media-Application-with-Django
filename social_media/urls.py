@@ -9,8 +9,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('baseapp.urls')),
+    # path('', include('baseapp.urls')),
     path('account/', include('account.urls', namespace='account')),
+    path('', include('posts.urls')),
 ]
 
 if settings.DEBUG:
